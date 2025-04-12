@@ -51,7 +51,7 @@ export default function Canvas() {
     } else {
       // Create a new object based on the selected tool
       const newObject: CanvasObject = {
-        id: Math.random().toString(36).substr(2, 9),
+        id: Date.now().toString(),
         type: tool === 'rect' ? 'rect' : tool === 'circle' ? 'circle' : 'text',
         x: pos.x,
         y: pos.y,
@@ -59,7 +59,7 @@ export default function Canvas() {
         height: 0,
         radius: 0,
         text: tool === 'text' ? 'Double click to edit' : '',
-        userId: getSocket().id,
+        userId: getSocket().id || 'anonymous',
         fill: '#ffffff',
         stroke: '#000000',
       };
@@ -92,7 +92,7 @@ export default function Canvas() {
         x: 0,
         y: 0,
         points: currentPath,
-        userId: getSocket().id,
+        userId: getSocket().id || 'anonymous',
         stroke: '#000000',
         strokeWidth: 2,
       };
