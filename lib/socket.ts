@@ -3,8 +3,11 @@ import { io, Socket } from 'socket.io-client';
 let socket: Socket;
 
 export const initializeSocket = (username: string) => {
-  socket = io('/', {
-    path: '/api/socketio',
+  // For static export, we'll need to use a fallback server
+  const socketUrl = process.env.NEXT_PUBLIC_SOCKET_URL || 'https://collaborative-socket-server.herokuapp.com';
+  
+  socket = io(socketUrl, {
+    path: '/socket.io',
     query: { username }
   });
 
