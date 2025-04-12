@@ -1,0 +1,3 @@
+This is a placeholder file for the socket.io API route.
+For the static GitHub Pages deployment, Socket.IO functionality is limited.
+The real-time collaboration features work best when deployed on a platform that supports server-side functionality. 

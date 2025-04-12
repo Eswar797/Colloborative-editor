@@ -1,5 +1,5 @@
 import { Server as NetServer } from 'http';
-import { NextApiRequest } from 'next';
+import { NextApiRequest, NextApiResponse } from 'next';
 import { Server as SocketIOServer } from 'socket.io';
 import { v4 as uuidv4 } from 'uuid';
 
@@ -9,7 +9,7 @@ export const config = {
   },
 };
 
-interface SocketNextApiResponse {
+interface SocketNextApiResponse extends NextApiResponse {
   socket: {
     server: NetServer & {
       io?: SocketIOServer;
@@ -156,5 +156,6 @@ export default function SocketHandler(_: NextApiRequest, res: SocketNextApiRespo
     res.socket.server.io = io;
   }
   
-  res.end();
+  // Fix for the res.end() issue
+  res.status(200).json({ success: true });
 } 

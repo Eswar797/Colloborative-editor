@@ -15,6 +15,9 @@ const nextConfig = {
     };
     return config;
   },
+  // Skip API routes for static export
+  distDir: 'out',
+  trailingSlash: true,
 }
 
 module.exports = nextConfig 
